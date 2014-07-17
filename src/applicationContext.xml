@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+      
+
+<!--   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+	  <property value="com.ibm.db2.jcc.DB2Driver" name="driverClassName"/>
+	  <property value="jdbc:db2://10.129.240.159:50000/TESTDATA" name="url"/>
+	  <property value="db2admin" name="username"/>
+	  <property value="123" name="password"/>
+ </bean> -->
+ 
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+  <property value="com.ibm.db2.jcc.DB2Driver" name="driverClassName"/>
+  <property value="jdbc:db2://133.96.71.1:50000/HEBDW" name="url"/>
+  <property value="app_vgop" name="username"/>
+  <property value="hebmc@1113" name="password"/>
+</bean> 
+
+<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">  
+        <property name="jndiName">  
+            <value>jdbc/hebdw</value>  
+        </property>  
+</bean>   -->
+ <!--
+     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+        <property name="dataSource">  
+            <ref bean="dataSource" />  
+        </property>  
+    </bean>  
+    -->    
+
+ <bean id="customTagDao" class="dao.TagInfoDaoImpl" depends-on="dataSource">
+ <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
+ <bean id="TagOperateDao" class="dao.TagOperateImpl" depends-on="dataSource">
+ <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
+  <bean id="MainTagDao" class="dao.MainTagDaoImpl" depends-on="dataSource">
+ <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
+  <bean id="TagAttrDao" class="dao.TagAttrDaoImpl" depends-on="dataSource">
+ <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
+ <bean id="TagApprove" class="dao.TagApproveImpl" depends-on="dataSource">
+ <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
+   <bean id="DownLoad" class="dao.DownLoadInfoImpl" depends-on="dataSource">
+ <property name="dataSource" ref="dataSource"></property>
+ </bean> 
+  <!-- 杨卫争 20130521 属性类别 -->
+ <bean id="arrtClassDaoImpl" class="dao.ArrtClassDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
+  <!-- 杨卫争 20130523 地域维表 -->
+ <bean id="regionDaoImpl" class="dao.RegionDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+   <!-- 杨卫争 20130524 黑白红名单表 -->
+ <bean id="typeUserInfoDaoImpl" class="dao.TypeUserInfoDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <!-- 杨卫争 20130528 标签构建属性 -->
+ <bean id="custTagAttrInfoDaoImpl" class="dao.CustTagAttrInfoDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+  <!-- 码值属性标签构建属性 -->
+  <bean id="attrTableDaoImpl" class="dao.AttrTableDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+   <!-- 杨卫争 20130601 上传名单 -->
+ <bean id="uploadLtLogDaoImpl" class="dao.UploadLtLogDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+  <!-- 杨卫争 20130601 下载文件 -->
+ <bean id="customgroupInfoDaoImpl" class="dao.CustomgroupInfoDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+    <!-- 杨卫争 20130602 创建申请详细信息 -->
+ <bean id="tabRequestDetlDaoImpl" class="dao.TabRequestDetlDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+    <!-- 杨卫争 20130602 申请标签信息表 -->
+ <bean id="tagApproveDaoImpl" class="dao.TagApproveDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>	
+      <!-- 杨卫争 20130605 审批人信息表 -->
+ <bean id="approverInfoDaoImpl" class="dao.ApproverInfoDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+   <!-- 杨卫争 20130607 插入日志信息表 -->
+ <bean id="operateLogDaoImpl" class="dao.OperateLogDaoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+
+ <!-- 杨卫争 20130704 排行访问统计 -->
+ <bean id="orderInfoImpl" class="dao.OrderInfoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+  <!-- 杨卫争 20130711 日月周期 日期-->
+ <bean id="cycleImpl" class="dao.CycleImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+   <!-- 杨卫争 20130716 月 排行访问统计  -->
+ <bean id="orderInfoMImpl" class="dao.OrderInfoMImpl" depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource"></property>
+ </bean>
+    <!-- 杨卫争 20130717 客户标签日统计  -->
+ <bean id="custDdao" class="dao.CustTagAndGroupMonitorDImpl" depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource"></property>
+ </bean> 
+     <!-- 杨卫争 20130718 客户标签月统计   -->
+ <bean id="custMdao" class="dao.CustTagAndGroupMonitorMImpl" depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource"></property>
+ </bean>
+      <!-- 杨卫争 20130729 客户标签构建   -->
+ <bean id="structureImp" class="dao.StructureImpl" depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource"></property>
+ </bean>
+ <!-- 杨卫争 20130827 构成条件   -->
+ <bean id="groupConditionImpl"  class="dao.GroupConditionImpl"  depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource" />
+ </bean>
+  <!-- 杨卫争 20130909 标签库业务类获取二级类名称   -->
+ <bean id="busClassTagImpl"  class="dao.BusClassTagImpl"  depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource" />
+ </bean>
+   <!-- 杨卫争 20130916 属性申请实现类   -->
+ <bean id="attrRequest"  class="dao.AttrRequestImpl"  depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource" />
+ </bean>
+ 
+  <!-- 杨卫争 20130922 权限列表   -->
+ <bean id="right"  class="dao.RightImpl"  depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource" />
+ </bean>
+ 
+   <!-- 杨卫争 20131017用户使用列表明细   -->
+ <bean id="tagsubdet"  class="dao.TagSubsDetImpl"  depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource" />
+ </bean>
+ 
+    <!-- 杨卫争 20131029区县使用列表明细   -->
+ <bean id="tagcounty"  class="dao.TagCountyImpl"  depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource" />
+ </bean>
+ 
+       <!-- 杨卫争 20131216下载原因   -->
+ <bean id="downReason"  class="dao.DownReasonImpl"  depends-on="dataSource">
+ 	<property name="dataSource"  ref="dataSource" />
+ </bean>
+ 
+ <!-- push -->
+ <bean id="jsonImpl" class="dao.push.ComboboxJsonImpl" depends-on="dataSource">
+    <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="createImpl" class="dao.push.CreatePlanImpl" depends-on="dataSource">
+    <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
+  <bean id="coreplanImpl" class="dao.push.CorePlanImpl" depends-on="dataSource">
+    <property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <!-- kob -->
+   <bean id="markPlanInfoImpl" class="dao.push.MarkPlanInfoImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+   <bean id="testImpl" class="dao.push.TestImpl" depends-on="dataSource">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>	
+</beans>

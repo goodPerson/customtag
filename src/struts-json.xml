@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="json" extends="json-default">
+   <!--获取标签日统计 20130717-->
+	<action name="getTagCountsData" class="action.CustCounttsAction" method="getTagCountsData">
+		    <result type="json">
+                <param name="root">
+                    jsonFinal
+                </param>
+            </result>
+	</action>
+	
+ 	 <!--获取标签月统计 20130718-->
+	<action name="getTagCountsDataM" class="action.CustCounttsAction" method="getTagCountsDataM">
+		    <result type="json">
+                <param name="root">
+                    jsonFinal
+                </param>
+            </result>
+	</action>
+		<!--月/日用户使用明细查询 20130926 -->
+	<action name="getTagSubsM" method="getTagSubsM" class="action.TagSubsDetailAction">
+		   <result type="json">
+                <param name="root">
+                    jsonFinal
+                </param>
+            </result>
+	</action>
+		<action name="getTagSubsD" method="getTagSubsD" class="action.TagSubsDetailAction">
+		   <result type="json">
+                <param name="root">
+                    jsonFinal
+                </param>
+            </result>
+	</action>
+			<!--月/日区县使用明细查询 20130926 -->
+	<action name="findCtcmList" method="findCtcmList" class="action.TagCountyAction">
+		   <result type="json">
+                <param name="root">
+                    jsonFinal
+                </param>
+            </result>
+	</action>
+		<action name="findCtcdList" method="findCtcdList" class="action.TagCountyAction">
+		   <result type="json">
+                <param name="root">
+                    jsonFinal
+                </param>
+            </result>
+	</action>	
+</package>
+
+</struts>

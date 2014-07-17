@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.multipart.maxSize" value="55000000"/>
+<constant name="struts.devMode" value="false" />
+<package name="default" extends="struts-default">
+      <interceptors>
+      		<interceptor name="loginChecked"   class="common.LoginedCheckInterceptor"/>
+      </interceptors>
+      <global-results>
+      		<result name="tologin">/views/tologin.jsp</result>
+      </global-results>          
+      
+     <action name="TagAction" class="action.TagInfoAction" method="execute">
+		<result name="success">/index.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+
+	<action name="addTagAction" method="addTag" class="action.TagOperateAction">
+		<result name="input">/index.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	
+	<action name="delTagAction" method="delTag" class="action.TagOperateAction">
+		<result name="input">/index.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	
+	<action name="shareTagAction" method="shareTag" class="action.TagOperateAction">
+		<result name="input">/index.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	
+	<action name="renameTagAction" method="renameTag" class="action.TagOperateAction">
+		<result name="input">/index.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	
+	<action name="listAttrTagAction" method="listAttr" class="action.TagInfoAction">
+		<result name="input">/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+    <!-- 获取 其他 大类属性模型  ywz  20130816 -->
+	<action name="getModel" method="getModel" class="action.TagInfoAction">
+		<result name="success">/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 查找标签 20131008 ywz -->
+	<action name="findTag" method="findTag" class="action.MainTanAction">		
+		<interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<action name="querydown" method="getListDownInfo" class="action.DownLoadAction">
+		<result name="success">/views/downloadinfo.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 删除下载记录 ywz 20130815 -->
+	<action name="delShow" method="delShow" class="action.DownLoadAction">
+		<result name="success" type="redirectAction">
+				<param name="actionName">querydown</param>  
+                <param name="userId">%{#session.userId}</param> 			
+		</result>	
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 属性分类json -->
+	<action name="getAttrAction" class="action.AttrManageAction" method="getAttr">
+		 <result name="success">/views/attrmanage.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!--属性子类1json-->
+	<action name="getAttr1Action" class="action.AttrManageAction" method="getAttr1">
+		 <result >/views/attrmanage.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!--属性子类2json-->
+	<action name="getAttr2Action" class="action.AttrManageAction" method="getAttr2">
+		 <result >/views/attrmanage.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+
+
+	<!--编辑属性名-->
+	<action name="renameAttrAction" class="action.AttrManageAction" method="renameAttr">
+		 <result name="success">/views/attrmanage.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!--删除属性-->
+	<action name="delAttrAction" class="action.AttrManageAction" method="delAttr">
+		 <result name="success">/views/attrmanage.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!--新建属性-->
+	<action name="addAttrAction" class="action.AttrManageAction" method="addAttr">
+		 <result name="success">/views/attrmanage.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+
+		<!-- 二级属性展示  ywz 20130521-->	
+	<action name="getAttrTableAction" method="getAttrTable" class="action.CustTagAttrInfoAction" >
+		 <result>/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 二级属性展示  ywz 20130521-->	
+	<action name="getSecName" class="action.ArrtClassAction" method="getListSecName">
+		 <result>/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 城市展示  ywz 20130523-->	
+	<action name="getCityName" class="action.RegionAction" method="getCityName">
+		 <result name="success">/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 区县展示  ywz 20130523-->	
+	<action name="getCountyName" class="action.RegionAction" method="getCountyName">
+		 <result name="success">/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 城市展示  ywz 20130523-->	
+	<action name="getDownRegion" class="action.RegionAction" method="downRegion">
+		 <result name="success">/views/maintag.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 上传黑白红名单  ywz 20130527-->	
+	<action name="importUser" class="action.TypeUserInfoAction" method="importUser">
+		<result name="importUser">/views/attrfilter.jsp</result> 
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+
+	
+	<!-- 客户标签导出  ywz 20130529-->	
+	<action name="exportTag" class="action.CustTagAttrInfoAction" method="exportTag">
+		 	    <result name="success" type="redirectAction">
+				<param name="actionName">initAttrTagAction</param>  
+                <param name="title_name">hhh</param> 			
+		</result>	
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+
+	<!-- 驳回申请  ywz 20130603-->	
+	<action name="rejectTag" class="action.TabRequestDeltAction" method="rejectTag">
+		 	    <result name="success" type="redirectAction">
+				<param name="actionName">listtTgApproAction</param>  
+                <param name="userId">%{#session.userId}</param> 	
+                <param name="jspmes">1</param>		
+			    </result>		
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+
+	<!-- 获取审批人名字   ywz 20130917-->	
+	<action name="*_action" class="action.TabRequestDeltAction" method="{1}">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+		<!--构成跳转-->
+	<action name="EAction" class="action.ConsistAction" method="execute">
+		 <result name="success">/views/consist.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!--构成测试-->
+	<action name="consistAction" class="action.ConsistAction" method="getconsist">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>	   
+	</action>
+	<!--在线帮助 20130719   -->
+     <action name="onlineHelp" class="action.HomeAction"  method="onlineHelp">
+     	<result name="success">/views/onlineHelp.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+     </action>
+      <!--下载原因 20130723   -->
+     <action name="requestDownReason" method="requestDownReason" class="action.DownLoadAction">
+		<result name="success">/views/downReasonRequest.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+    <!--添加下载原因 20130724  -->
+     <action name="addReason" method="addReason" class="action.DownLoadAction">
+				<result name="success" type="redirectAction">
+						<param name="actionName">querydown</param>  	
+						<param name="userId">%{#session.userId}</param> 	
+			    </result>		
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+
+    <!--标签库获取各地区数据 20130801 -->
+	<action name="listRegionData" method="listRegionData" class="action.MainTanAction">
+		<result name="success">/views/tagRegionData.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	    <!--属性申请 20130916 -->
+	<action name="*_attr" method="{1}" class="action.AttrRequesAction">		
+		<result name="addattrrequest"  type="redirectAction">
+           <param name="actionName">attrList_attr</param>
+           <param name="attrType">1</param>
+        </result>		
+		<result name="appReq"  type="redirectAction">
+           <param name="actionName">atrrAlreadyList_attr</param>
+           <param name="attrType">2</param>
+        </result>			
+	    <result name="reqForm">/views/attrRequest.jsp</result>
+		<result name="{1}">/views/{1}.jsp</result>
+		<result name="alreadyList">/views/attrList.jsp</result>
+		<result name="waitList">/views/attrList.jsp</result>
+		<result name="approvattr">/views/attrverify.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+		 <!--获取路径名 20130926 -->
+	<action name="getAttrPath" method="getAttrPath" class="action.TagInfoAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!--下载原因 列表 20131218 -->
+     <action name="listReason" method="listReason" class="action.DownLoadAction">
+				<result name="success" >/views/DownLoad_listReason.jsp</result>		
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 金库认证 -->
+<!-- 	<action name="*"   class="action.TreasuryAction"  method="{1}">
+	
+	</action> -->
+	<!-- 在线帮助下载 -->	  
+	<action name="downHelpFile"   class="action.DownLoadAction"  method="downHelpFile">
+	</action>
+
+</package>
+
+  <include file="struts-home.xml" />
+  <include file="struts-json.xml" />
+  <include file="struts-tagmager.xml" />
+  <include file="struts-attrmager.xml" />
+   <include file="struts-groupmager.xml" />
+   <include file="struts-tagcounts.xml" />
+   <include file="struts-markety.xml" />  
+</struts>

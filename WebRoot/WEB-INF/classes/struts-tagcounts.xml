@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="tagcounts" extends="default">
+	   <!--标签统计月 20130717-->
+	<action name="mainMethod" class="action.CustCounttsAction" method="mainMethod">
+		 <result name="success">/views/tagCount.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+		<!--标签统计日 20130723-->
+	<action name="mainDay" class="action.CustCounttsAction" method="mainDay">
+		 <result name="success">/views/tagCountDay.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+		<action name="exportDr"  method="exportDr" class="action.CustCounttsAction">	   
+				<result name="exportDR" type="stream">
+				<param name="inputName">downloadFile</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+				<!--导出明细统计 -->
+	<action name="exportMdet"  method="exportMdet" class="action.TagSubsDetailAction">	    
+	     		<result name="exportMdet" type="stream">
+				<param name="inputName">downloadFile</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">2048</param>
+			</result>
+
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<action name="exportDdet"  method="exportDdet" class="action.TagSubsDetailAction">	  
+				<result name="exportDdet" type="stream">
+				<param name="inputName">downloadFile</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">2048</param>
+			</result>
+	</action>
+	<!--导出地区统计 -->
+	<action name="exportRm"  method="exportRm" class="action.CustCounttsAction">	    
+	     		<result name="exportRm" type="stream">
+				<param name="inputName">downloadFile</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<action name="exportDCount" method="exportDCount" class="action.TagCountyAction">	    
+				<result name="dDownLoad" type="stream">
+				<param name="inputName">downloadFile</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+		  <!--导出区县统计 -->
+	<action name="exportMCount" method="exportMCount" class="action.TagCountyAction">	    
+	     		<result name="mDownLoad" type="stream">
+				<param name="inputName">downloadFile</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>		
+	  <!--区县访问统计 20131018 -->
+	<action name="countyMethod" method="countyMethod" class="action.TagCountyAction">
+	     <result name="contyMethod">/views/tagCountyStatis.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>			
+	<!--月/日用户使用明细查询 20131017 -->
+	<action name="getConutTag_tagsub" method="getConutTag" class="action.TagSubsDetailAction">
+	     <!--<result name="tagSubsM">/views/tagCountyCount.jsp</result>-->
+	     <result name="getConutTag">/views/tagCountyCount.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+  <!--获取月用户名单 20131018 -->
+<!-- 	<action name="*_sechtag" method="{1}" class="action.TagSubsDetailAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	 -->
+	 <action name="getTagSubsM_sechtag" method="getTagSubsM" class="action.TagSubsDetailAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>		
+
+ 	<action name="getUserName_sechtag" method="getUserName" class="action.TagSubsDetailAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>		
+	
+	 <action name="getCountyNamel_sechtag" method="getCountyNamel" class="action.TagSubsDetailAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+	<action name="getUserNameD_sechtag" method="getUserNameD" class="action.TagSubsDetailAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+	<action name="getTagSubsD_sechtag" method="getTagSubsD" class="action.TagSubsDetailAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+	<action name="getCountyNamelD_sechtag" method="getCountyNamelD" class="action.TagSubsDetailAction">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+</package>
+
+</struts>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="groupmager" extends="default">
+   	<action name="TaginfoAction" class="action.TagOperateAction" method="execute">
+		<result name="success">/views/taginfo.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<action name="initAttrTagAction" method="initAttr" class="action.TagInfoAction">
+		<result name="success">/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+		<!--群创建 高级构成  20130821 ywz -->
+	<action name="initBigClassName" method="initBigClassName" class="action.AdvanceTagInfoAction">
+		<result name="success">/views/advanceAttrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 客户标签筛选数量  ywz 20130530-->	
+	<action name="filterTagCounts" class="action.CustTagAttrInfoAction" method="filterTagCounts">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 修改客户标签构建条件  ywz 20130528-->	
+	<action name="updateGroupTag" class="action.CustTagAttrInfoAction" method="updateGroupTag">	  
+		<!-- 
+		<result name="success" type="redirectAction">
+				<param name="actionName">initAttrTagAction</param>  
+                <param name="title_name">hhh</param> 			
+		</result>	
+		 -->
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+	<action name="downaddinfo" method="addDownload" class="action.DownLoadAction">
+		<result >/views/attrfilter.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>		
+    <!--条件构建 20130730  -->
+     <action name="buildContion" method="buildContion" class="action.TagInfoAction">
+				<result name="success" >/views/structure.jsp</result>		
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 客户标签筛选  ywz 20130530-->			
+	<action name="filterTagExport" class="action.CustTagAttrInfoAction" method="filterTagExport">
+		<result name="exportUser" type="stream">
+			<param name="inputName">downloadFile</param>
+			<param name="contentType">${contentType}</param>
+			<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			<param name="bufferSize">51200</param>
+		</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>		
+	<!-- 修改客户标签构建条件  ywz 20130826-->
+	<action name="updateAdvanceGroupTag" class="action.AdvanceTagInfoAction" method="updateAdvanceGroupTag">
+		 <result name="success" >/views/advanceAttrfilter.jsp</result>	
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>		
+	<!-- <action name="*-*"  class="action.{1}Action" method="{2}"> -->
+	<action name="*-*" class="action.{1}Action" method="{2}">
+	</action>
+</package>
+
+</struts>

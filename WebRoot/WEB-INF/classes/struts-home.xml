@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="home" extends="default">
+   	<!-- 首页地区排序 20130705 -->
+	<action name="areaOrder"   class="action.HomeAction"   method="areaOrder">
+			<result name="success" >/views/home_iframe.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!-- 首页 20130705 -->
+     <action name="homeAction" class="action.HomeAction"  method="homeAction">
+     	<result name="success">/views/home.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+     </action>
+     <!-- 首页iframe 20130705 -->
+     <action name="iframeAction" class="action.HomeAction"  method="iframeAction">
+     	<result name="success" >/views/home_iframe.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+     </action>
+	
+	
+</package>
+
+</struts>

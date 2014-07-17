@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="markety" extends="default">
+   <!-- 开始 -->
+	<action name="entryplan_create" class="action.push.CreatePlanAction" method="entryplan_create">
+			<result name="success">/push/plan_create.jsp</result>
+	</action>
+	<action name="importAction" class="action.push.CreatePlanAction" method="importNames">
+			<result name="success">/push/upload.jsp</result>
+	</action>
+	<action name="custJson" class="action.push.CreatePlanAction" method="getCust">
+	</action>
+	<action name="datagridjson" class="action.push.CreatePlanAction" method="datagridjson">
+	</action>
+	<action name="addUploadAction" class="action.push.CreatePlanAction" method="addUpload">
+	</action>
+	<action name="addPlanAction" class="action.push.CreatePlanAction" method="addPlan">
+	</action>
+	<action name="updatePlanAction" class="action.push.CreatePlanAction" method="updateplan">
+		  <result name="success">/push/marketlist.jsp</result> 
+		  <result name="modelsuccess">/push/core_marketlist.jsp</result>   
+		  <result name="error">/push/plan_create.jsp</result>   
+	</action>
+	<action name="delfileAction" class="action.push.CreatePlanAction" method="delupload">
+	</action>
+	<action name="deluploadbyplanid" class="action.push.CreatePlanAction" method="deluploadbyplanid">
+	</action>
+  <action name="tishiAction" class="action.push.TestAction" method="tishiname">
+	</action>
+ <action name="getplanaccess" class="action.push.MarkPlanInfoAction" method="getplanaccess">
+	</action>
+    <action name="pie" class="action.push.MarkPlanInfoAction" method="pie">
+	</action>
+	<action name="chart" class="action.push.MarkPlanInfoAction" method="chart">
+	</action>
+	<action name="plancustlist"  class="action.push.CreatePlanAction" method="downlist">
+	</action>
+	<action name="selectedcustlist" class="action.push.CreatePlanAction" method="selectedcustlist">
+	</action>
+	
+	<action name="searchPripro" class="action.push.TestAction" method="searchProPre"> 
+		<result name="success">/push/selectpro_pre.jsp</result>
+	</action>
+	 <action name="tishipreAction" class="action.push.TestAction" method="tishipre">
+	</action>
+	<action name="getsp_nameList" class="action.push.TestAction" method="getsp_nameList">
+	</action>	
+	<action name="getMarkPlanInfoList" class="action.push.MarkPlanInfoAction" method="getMarkPlanInfoList"> 
+	</action>
+	<action name="getPlanNameList" class="action.push.MarkPlanInfoAction" method="getPlanNameList"> 
+	</action>
+	<action name="getCorePlanNameList" class="action.push.CorePlanAction" method="getPlanNameList"> 
+	</action>
+	<action name="delMarkt" class="action.push.MarkPlanInfoAction" method="delMarkt"> 
+	</action>
+	<action name="searchPrivilege" class="action.push.TestAction" method="searchPrivilege"> 
+		<result name="success">/push/test.jsp</result>
+	</action> 
+	<action name="spnametishiAction" class="action.push.TestAction" method="tishispname">
+	</action>
+	<action name="plancreateAction" class="action.push.CreatePlanAction" method="push_plan">
+	   <result name="success">/push/plan_create.jsp</result>
+	</action>
+	<action name="getmodelsList" class="action.push.CorePlanAction" method="getmodelsList">
+	</action>
+	<action name="coreplan" class="action.push.CorePlanAction" method="excute">
+	    <result name="success">/push/core_plan_create.jsp</result>
+	</action>
+	<action name="getCoreMarkPlanInfoList" class="action.push.CorePlanAction" method="getCoreMarkPlanInfoList"> 
+	</action>
+	<action name="getcoreplanaccess" class="action.push.CorePlanAction" method="getnewplanaccess"> 
+	</action>
+	<action name="getplanbenefit" class="action.push.CorePlanAction" method="getbenefitjson"> 
+	</action>
+	<action name="treejsonaction" class="action.push.CreatePlanAction" method="treejson">
+	</action>
+	<action name="treesjsonaction" class="action.push.CreatePlanAction" method="treesjson">
+	</action>
+	<action name="treeregionaction" class="action.push.CreatePlanAction" method="regiontree">
+	</action>
+	<action name="plantypeaction" class="action.push.CreatePlanAction" method="plantypelist">
+	</action>
+	<action name="plantopaction" class="action.push.CreatePlanAction" method="plantoplist">
+	</action>
+	<!-- 结束 -->
+</package>
+
+</struts>

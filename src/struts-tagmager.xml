@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="tagmger" extends="default">
+	<action name="initMainTagAction" method="initMainTag" class="action.MainTanAction">
+		<result name="success">/views/maintag.jsp</result>
+		<interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+     <!--我的标签状态展示 20130711-->
+	<action name="myTagAction" class="action.TagApproveAction" method="myListtgappro">
+		 <result name="success">/views/tagapprove.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	<!--标签状态展示-->
+	<action name="listtTgApproAction" class="action.TagApproveAction" method="listtgappro">
+		 <result name="success">/views/tagapprove.jsp</result>
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+		<!-- 进入添加页面  ywz 20130602-->	
+	<action name="access" class="action.TabRequestDeltAction" method="execute">
+		 	     <result name="success">/views/tagrequest.jsp</result>		
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	    <!-- 提交申请表  ywz 20130602-->	
+    <action name="addTabRequestDelt" class="action.TabRequestDeltAction" method="addTabRequestDelt">
+		 	    <result name="success" type="redirectAction">
+				<param name="actionName">listtTgApproAction</param>  
+                <param name="userId">%{#session.userId}</param> 	
+                <param name="jspmes">0</param>		
+			</result>	
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+  <!-- 进入添加页面  ywz 20130603-->	
+	<action name="getTabRequestDetl" class="action.TabRequestDeltAction" method="getTabRequestDetl">
+		 	     <result name="success">/views/tagverify.jsp</result>		
+		 	      <result name="fail">/index.jsp</result>		
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+	<!-- 审核申请  ywz 20130603-->	
+	<action name="verifyTag" class="action.TabRequestDeltAction" method="verifyTag">
+		 	    <result name="success" type="redirectAction">
+				<param name="actionName">listtTgApproAction</param>  
+                <param name="userId">%{#session.userId}</param> 	
+                <param name="jspmes">0</param>		
+			    </result>	
+		 	     <result name="fail">/index.jsp</result>		
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>				
+		<!-- 获取审批人  ywz 20130605-->	
+	<action name="getAppro" class="action.TabRequestDeltAction" method="getAppro">
+		 <interceptor-ref name="loginChecked"/>
+		<interceptor-ref name="defaultStack"/>
+	</action>	
+</package>
+
+</struts>
